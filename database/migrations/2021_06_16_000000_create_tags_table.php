@@ -14,14 +14,14 @@ class CreateTagsTable extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->autoIncrement();
-            $table->string("id")->comment("标签id");
-            $table->string("name")->comment("标签名称");
-            $table->string("order")->comment("标签组排序的次序值，order值大的排序靠前");
-            $table->timestamp('create_time')->comment("创建时间");
-            $table->timestamp('update_time')->comment("修改时间");
-            $table->tinyInteger("is_delete")->comment("是否删除");
-            $table->uuid("tag_group_uuid")->comment("标签组的uuid");
+            $table->bigIncrements('uuid');
+            $table->string("id")->nullable(false)->comment("标签id");
+            $table->string("name")->nullable(false)->comment("标签名称");
+            $table->string("order")->nullable(false)->comment("标签组排序的次序值，order值大的排序靠前");
+            $table->timestamp('create_time')->nullable()->comment("创建时间");
+            $table->timestamp('update_time')->nullable()->comment("修改时间");
+            $table->tinyInteger("is_delete")->nullable()->comment("是否删除");
+            $table->unsignedBigInteger("tag_group_uuid")->nullable(false)->comment("标签组的uuid");
         });
     }
 

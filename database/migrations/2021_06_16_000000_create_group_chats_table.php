@@ -14,14 +14,14 @@ class CreateGroupChatsTable extends Migration
     public function up()
     {
         Schema::create('group_chats', function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->autoIncrement();
-            $table->uuid('chat_id')->comment("客户群ID");
-            $table->string("name")->comment("群名");
-            $table->string("owner_uuid")->comment("群主的uuid-员工");
-            $table->string("notice")->comment("图片的media_id");
-            $table->timestamp('create_time')->comment("创建时间");
-            $table->timestamp('update_time')->comment("修改时间");
-            $table->tinyInteger("is_delete")->comment("是否删除");
+            $table->bigIncrements('uuid');
+            $table->unsignedBigInteger('chat_id')->nullable(false)->comment("客户群ID");
+            $table->string("name")->nullable()->comment("群名");
+            $table->string("owner_uuid")->nullable(false)->comment("群主的uuid-员工");
+            $table->string("notice")->nullable()->comment("图片的media_id");
+            $table->timestamp('create_time')->nullable()->comment("创建时间");
+            $table->timestamp('update_time')->nullable()->comment("修改时间");
+            $table->tinyInteger("is_delete")->nullable()->comment("是否删除");
         });
     }
 

@@ -14,14 +14,14 @@ class CreateRelationshipsTable extends Migration
     public function up()
     {
         Schema::create('relationships', function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->autoIncrement();
-            $table->uuid('customer_uuid')->comment("客户的uuid");
-            $table->uuid('user_uuid')->comment("员工的uuid");
-            $table->string('remark')->comment("该成员对此外部联系人的备注");
-            $table->string("description")->comment("该成员对此外部联系人的描述");
-            $table->timestamp("createtime")->comment("该成员添加此外部联系人的时间");
-            $table->string("remark_corp_name")->comment("该成员对此客户备注的企业名称");
-            $table->string("remark_mobiles")->comment("该成员对此客户备注的手机号码,','隔开");
+            $table->bigIncrements('uuid');
+            $table->unsignedBigInteger('customer_uuid')->nullable(false)->comment("客户的uuid");
+            $table->unsignedBigInteger('user_uuid')->nullable(false)->comment("员工的uuid");
+            $table->string('remark')->nullable()->comment("该成员对此外部联系人的备注");
+            $table->string("description")->nullable()->comment("该成员对此外部联系人的描述");
+            $table->timestamp("createtime")->nullable()->comment("该成员添加此外部联系人的时间");
+            $table->string("remark_corp_name")->nullable()->comment("该成员对此客户备注的企业名称");
+            $table->string("remark_mobiles")->nullable()->comment("该成员对此客户备注的手机号码,','隔开");
             //0	未知来源
             //1	扫描二维码
             //2	搜索手机号

@@ -14,8 +14,8 @@ class CreateGroupChatsRelAdminsTable extends Migration
     public function up()
     {
         Schema::create('group_chats_rel_admins', function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->autoIncrement();
-            $table->uuid('admin_uuid')->comment("管理员的uuid-员工");
+            $table->bigIncrements('uuid');
+            $table->unsignedBigInteger('admin_uuid')->comment("管理员的uuid-员工");
             $table->timestamp('create_time')->comment("创建时间");
             $table->timestamp('update_time')->comment("修改时间");
             $table->tinyInteger("is_delete")->comment("是否删除");
